@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Latest News</h2>
+<ul>
+    {% for item in news %}
+    <li><strong>{{ item.title }}</strong>: {{ item.published_date }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Upcoming Events</h2>
+<ul>
+    {% for event in events %}
+    <li><strong>{{ event.title }}</strong> on {{ event.date }} at {{ event.time }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
