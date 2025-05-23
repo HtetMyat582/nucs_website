@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div class="text-center mt-5">
+    <h1 class="mb-4">Welcome to NUCS</h1>
+    <div class="mb-4">
+        <button class="btn btn-outline-primary me-2">Explore</button>
+        <button class="btn btn-primary">Enroll Now!</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card card-academic p-4">
+                <h4>Programs</h4>
+                <p>Explore undergraduate and postgraduate programs.</p>
+                <div class="text-end">
+                    <a href="#" class="btn btn-link">Explore <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card card-academic p-4">
+                <h4>Courses</h4>
+                <p>Find your courses and manage enrollments.</p>
+                <div class="text-end">
+                    <a href="#" class="btn btn-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card card-academic p-4">
+                <h4>Faculty</h4>
+                <p>Meet our world-class faculty and departments.</p>
+                <div class="text-end">
+                    <a href="#" class="btn btn-link">See Faculty <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "portal/news_and_events.html" %}
+
+</div>
+
+{% endblock %}

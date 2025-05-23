@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+
+{% if faculty_results %}
+<h4>Faculty</h4>
+<ul>
+    {% for faculty in faculty_results %}
+    <li><strong>{{ faculty.username }}</strong>: {{ faculty.department }}</li>
+    {% empty %}
+    <li>No faculty found.</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if course_results %}
+<h4>Courses</h4>
+<ul>
+    {% for course in course_results %}
+    <li><strong>{{ course.course_name }}</strong>: {{ course.description|truncatewords:20 }}</li>
+    {% empty %}
+    <li>No courses found.</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if news_results %}
+<h4>News</h4>
+<ul>
+    {% for news in news_results %}
+    <li><strong>{{ news.title }}</strong>: {{ news.content|truncatewords:20 }}</li>
+    {% empty %}
+    <li>No news found.</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if event_results %}
+<h4>Events</h4>
+<ul>
+    {% for event in event_results %}
+    <li><strong>{{ event.title }}</strong>: {{ event.description|truncatewords:20 }}</li>
+    {% empty %}
+    <li>No events found.</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

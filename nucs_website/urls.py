@@ -18,14 +18,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from portal import views
 
-
+admin.site.site_title = "NUCS Admin"
+admin.site.site_header = "NUCS Administration"
+admin.site.index_title = "Site Administration"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('portal.urls')),
+    path('portal/', include('portal.urls')),
     path('user/', include('users.urls')),
-
+    path('', views.home, name='home'),
+    #path('', TemplateView.as_view(template_name="home.html"), name='home'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

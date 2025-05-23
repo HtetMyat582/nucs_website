@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-<div class="card p-4 col-md-8 mx-auto">
-    <h3 class="mb-3">Update Profile</h3>
+<div class="card col-md-8 mx-auto">
+    <h3 class="mb-4 text-center">Your Profile</h3>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

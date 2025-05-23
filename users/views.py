@@ -8,7 +8,9 @@ def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.role = 'Student'
+            user.save()
             login(request, user)
             return redirect('home')
     else:
