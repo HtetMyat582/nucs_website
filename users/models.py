@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django_countries.fields import CountryField
 
 class User(AbstractUser):
     ROLE_CHOICES = [
@@ -8,7 +9,7 @@ class User(AbstractUser):
         ('SysAdmin', 'SysAdmin'),
     ]
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Student')
-    country = models.CharField(max_length=50)
+    country = CountryField(blank_label='(select country)', null=True, blank=True)
     city = models.CharField(max_length=50)
     profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True)
 
@@ -23,3 +24,4 @@ class Faculty(models.Model):
     department = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     contact_info = models.TextField()
+    

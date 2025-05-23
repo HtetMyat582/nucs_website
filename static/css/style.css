@@ -127,10 +127,15 @@ form {
     width: 100%;
 }
 
-    .form-input:focus {
-        border-bottom: 2px solid #0077aa;
-        outline: none;
-    }
+.form-input:focus {
+    border-bottom: 2px solid #0077aa;
+    outline: none;
+
+}
+
+.form-input.select {
+    background: transparent;
+}
 
 textarea.form-input {
     resize: vertical;

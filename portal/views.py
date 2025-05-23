@@ -3,11 +3,13 @@ from portal.models import News, Event
 from academics.models import Course
 from users.models import Faculty
 from django.db.models import Q
+from datetime import datetime
 
 def home(request):
     news = News.objects.all().order_by('-published_date')[:4]
     events = Event.objects.all().order_by('-date')[:4]
-    return render(request, 'home.html', {'news': news, 'events': events})
+    now = datetime.now().year
+    return render(request, 'home.html', {'news': news, 'events': events, 'now': now})
 
 
 
