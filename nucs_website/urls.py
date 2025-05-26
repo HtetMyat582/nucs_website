@@ -29,8 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('portal/', include('portal.urls')),
     path('user/', include('users.urls')),
+    path('academics/', include('academics.urls')),
     path('', views.home, name='home'),
-    #path('', TemplateView.as_view(template_name="home.html"), name='home'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

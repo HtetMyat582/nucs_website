@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django_countries.fields import CountryField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class User(AbstractUser):
     ROLE_CHOICES = [
@@ -15,13 +17,20 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    enrollment_number = models.CharField(max_length=20)
-    program = models.CharField(max_length=100)
-    year_of_study = models.IntegerField()
+    enrollment_number = models.CharField(max_length=20, null=True, blank=True)
+    program = models.CharField(max_length=100, null=True, blank=True)
+    year_of_study = models.IntegerField(null=True, blank=True)
 
 class Faculty(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    department = models.CharField(max_length=100)
-    designation = models.CharField(max_length=100)
-    contact_info = models.TextField()
+    department = models.CharField(max_length=100, null=True, blank=True)
+    designation = models.CharField(max_length=100, null=True, blank=True)
+    contact_info = models.TextField(null=True, blank=True)
     
+@receiver(post_save, sender=User)
+def create_or_update_student(sender, instance, created, **kwargs):
+    if instance.role == 'Student':
+        Student.objects.get_or_create(user=instance)
+    else:
+        # delete Student record if role is changed away from Student
+        Student.objects.filter(user=instance).delete()

@@ -13,10 +13,13 @@
             <label class="form-label">Password</label>
             <input type="password" name="password" class="form-input" required>
         </div>
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
         <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
     <div class="text-center mt-4">
-        <span>New here? <a href="{% url "register" %}" class="text-decoration-none"> Create your account now.</a></span>
+        <span>To enroll our courses, <a href="{% url "register" %}" class="text-decoration-none"> create your account now.</a></span>
     </div>
 </div>
 {% endblock %}
