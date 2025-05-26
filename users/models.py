@@ -10,7 +10,7 @@ class User(AbstractUser):
     ]
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Student')
     country = CountryField(blank_label='(select country)', null=True, blank=True)
-    city = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True)
 
 class Student(models.Model):

@@ -1,8 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-<div class="card col-md-8 mx-auto">
-    <h3 class="mb-4 text-center">Your Profile</h3>
+<div class="card col-md-8 mx-auto p-4">
+    <h3 class="mb-4 text-center">Edit Your Profile</h3>
+    <div class="d-flex flex-column align-items-center mb-4">
+        {% if user.profile_picture %}
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-avatar mb-2">
+        {% else %}
+        <div class="profile-avatar profile-avatar-placeholder mb-2">
+            <i class="bi bi-person"></i>
+        </div>
+        {% endif %}
+        <div>
+            <h4 class="text-center">{{ user.username }}</h4>
+            <p class="text-center">{{ user.email }}</p>
+        </div>
+    </div>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
