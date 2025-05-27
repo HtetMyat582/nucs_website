@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Enrollment, Course, Program, Student
+from .models import Enrollment, Course, Program, Faculty, Student
 
 @login_required
 def enroll(request):
@@ -37,3 +37,27 @@ def enroll(request):
         'programs': programs,
         'courses': courses,
     })
+
+def program_list(request):
+    programs = Program.objects.filter(is_active=True)
+    return render(request, 'academics/program_list.html', {'programs': programs})
+
+def program_detail(request, pk):
+    program = get_object_or_404(Program, pk=pk)
+    return render(request, 'academics/program_detail.html', {'program': program})
+
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'academics/course_list.html', {'courses': courses})
+
+def course_detail(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'academics/course_detail.html', {'course': course})
+
+def faculty_list(request):
+    faculty = Faculty.objects.all()
+    return render(request, 'academics/faculty_list.html', {'faculty': faculty})
+
+def faculty_detail(request, pk):
+    faculty_member = get_object_or_404(Faculty, pk=pk)
+    return render(request, 'academics/faculty_detail.html', {'faculty_member': faculty_member})
