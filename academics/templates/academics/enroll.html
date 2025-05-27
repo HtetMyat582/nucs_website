@@ -1,12 +1,98 @@
 {% extends 'base.html' %}
-{% block title %}Enroll in a Course{% endblock %}
+{% block title %}Enroll in a Program or a Course{% endblock %}
 {% block content %}
-<div class="card col-md-6 mx-auto p-4">
-    <h3 class="mb-4 text-center">Enroll in a Course</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary w-100">Submit Enrollment</button>
-    </form>
+<div class="card col-md-10 mx-auto p-4">
+    <h3 class="mb-4 text-center">Enroll in a Program or a Course</h3>
+    {% if message %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <h4>Programs</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Degree Type</th>
+                <th>Description</th>
+                <th>Duration (years)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for program in programs %}
+            <tr>
+                <td>{{ program.name }}</td>
+                <td>{{ program.degree_type }}</td>
+                <td>
+                    {{ program.description }}
+                    <!--
+    {% if program.courses.all %}
+    <div class="mt-2">
+        <strong>Courses:</strong>
+        <table class="table table-sm mb-0 mt-1">
+            <tbody>
+                {% for course in program.courses.all %}
+                <tr>
+                    <td>{{ course.course_code }}</td>
+                    <td>{{ course.course_name }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="2">No courses in this program.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}-->
+                </td>
+                <td>{{ program.duration_years }}</td>
+                <td>
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="program_id" value="{{ program.id }}">
+                        <button type="submit" class="btn btn-primary btn-sm">Enroll</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No programs available.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4>Standalone Courses</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Credits</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            {% if not course.program %}
+            <tr>
+                <td>{{ course.course_code }}</td>
+                <td>{{ course.course_name }}</td>
+                <td>{{ course.description }}</td>
+                <td>{{ course.credits }}</td>
+                <td>
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="course_id" value="{{ course.id }}">
+                        <button type="submit" class="btn btn-primary btn-sm">Enroll</button>
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+            {% empty %}
+            <tr><td colspan="5">No standalone courses available.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
