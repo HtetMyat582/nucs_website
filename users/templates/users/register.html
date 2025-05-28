@@ -16,6 +16,9 @@
         {% endfor %}
         <button type="submit" class="btn btn-success w-100">Register</button>
     </form>
+    <div class="text-center mt-4">
+        <span>Already have an account? <a href="{% url "login" %}" class="text-decoration-none"> Log in. </a></span>
+    </div>
 </div>
 {% endblock %}
 

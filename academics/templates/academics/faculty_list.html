@@ -8,8 +8,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
+                    <th>Designation</th>
                     <th>Department</th>
                     <th></th>
                 </tr>
@@ -22,15 +21,14 @@
                             {{ member.user.first_name }} {{ member.user.last_name }}
                         </a>
                     </td>
-                    <td>{{ member.user.username }}</td>
-                    <td>{{ member.user.email }}</td>
+                    <td>{{ member.designation }}</td>
                     <td>{{ member.department }}</td>
                     <td>
                         <a href="{% url 'faculty_detail' member.pk %}" class="btn btn-sm btn-outline-primary">Profile</a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr><td colspan="5">No faculty members found.</td></tr>
+                <tr><td colspan="4">No faculty members found.</td></tr>
                 {% endfor %}
             </tbody>
         </table>

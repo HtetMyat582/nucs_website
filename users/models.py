@@ -21,11 +21,17 @@ class Student(models.Model):
     program = models.CharField(max_length=100, null=True, blank=True)
     year_of_study = models.IntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return self.user.username
+
 class Faculty(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.CharField(max_length=100, null=True, blank=True)
     designation = models.CharField(max_length=100, null=True, blank=True)
     contact_info = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
     
 @receiver(post_save, sender=User)
 def create_or_update_student(sender, instance, created, **kwargs):

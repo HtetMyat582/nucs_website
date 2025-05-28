@@ -27,8 +27,21 @@ class Course(models.Model):
     credits = models.IntegerField()
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.course_code
+
 class Enrollment(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
+    ]
+
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     enrollment_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
+
+    def __str__(self):
+        return self.student.user.username

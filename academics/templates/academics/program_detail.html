@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 {% block title %}{{ program.name }}{% endblock %}
 {% block content %}
-<h2>{{ program.name }}</h2>
-<p>{{ program.description }}</p>
+<div class="card col-md-8 mx-auto p-4">
+    <h3 class="mb-4 text-center">{{ program.name }}</h3>
+    <div class="mb-3 card-text">
+        <strong>Degree Type:</strong> {{ program.degree_type }}
+    </div>
+    <div class="mb-3">
+        <strong>Description:</strong>
+        <p>{{ program.description }}</p>
+    </div>
+    <div class="mb-3">
+        <strong>Duration:</strong> {{ program.duration_years }} years
+    </div>
+    <div class="mb-3">
+        <strong>Status:</strong>
+        {% if program.is_active %}
+        <span class="text-success">Active</span>
+        {% else %}
+        <span class="text-danger">Inactive</span>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <strong>Created At:</strong> {{ program.created_at|date:"F j, Y" }}
+    </div>
+    <div class="mb-3">
+        <strong>Courses:</strong>
+        {% if program.courses.all %}
+        <ul>
+            {% for course in program.courses.all %}
+            <li>{{ course.course_code }} - {{ course.course_name }}</li>
+            {% empty %}
+            <li class="text-muted">No courses available.</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <span class="text-muted">No courses available.</span>
+        {% endif %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'enroll' program.id %}" class="btn btn-primary">Enroll in this Program</a>
+    </div>
+</div>
 {% endblock %}

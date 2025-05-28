@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Enrollment, Course, Program, Faculty, Student
 
 @login_required
-def enroll(request):
+def enroll(request, program_id):
     user = request.user
     try:
         student = user.student
