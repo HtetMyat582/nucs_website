@@ -1,83 +1,75 @@
 {% extends 'base.html' %}
-{% block title %}Enroll in a Program or a Course{% endblock %}
+{% block title %}Enroll{% endblock %}
 {% block content %}
-<div class="card col-md-10 mx-auto p-4">
-    <h3 class="mb-4 text-center">Enroll in a Program or a Course</h3>
-    {% if message %}
-    <div class="alert alert-info">
-        {{ message }}
+<div class="card col-md-6 mx-auto p-4 mt-4">
+    <h3 class="mb-4 text-center">Enrollment</h3>
+    {% if selected_program %}
+    <div class="mb-3">
+        <strong>Program Name:</strong> {{ selected_program.name }}
+    </div>
+    <div class="mb-3">
+        <strong>Degree Type:</strong> {{ selected_program.degree_type }}
+    </div>
+    <div class="mb-3">
+        <strong>Description:</strong> {{ selected_program.description }}
+    </div>
+    <div class="mb-3">
+        <strong>Duration:</strong> {{ selected_program.duration_years }} years
+    </div>
+    <div class="mb-3">
+        <strong>Status:</strong>
+        {% if selected_program.is_active %}
+        <span class="text-success">Active</span>
+        {% else %}
+        <span class="text-danger">Inactive</span>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <strong>Created At:</strong> {{ selected_program.created_at|date:"F j, Y" }}
+    </div>
+    <div class="mb-3">
+        <strong>Courses:</strong>
+        {% if selected_program.courses.all %}
+        <ul>
+            {% for course in selected_program.courses.all %}
+            <li>{{ course.course_code }} - {{ course.course_name }}</li>
+            {% empty %}
+            <li class="text-muted">No courses available.</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <span class="text-muted">No courses available.</span>
+        {% endif %}
+    </div>
+    {% elif selected_course %}
+    <div class="mb-3">
+        <strong>Course Code:</strong> {{ selected_course.course_code }}
+    </div>
+    <div class="mb-3">
+        <strong>Course Name:</strong> {{ selected_course.course_name }}
+    </div>
+    <div class="mb-3">
+        <strong>Description:</strong> {{ selected_course.description }}
+    </div>
+    <div class="mb-3">
+        <strong>Credits:</strong> {{ selected_course.credits }}
+    </div>
+    {% if selected_course.program %}
+    <div class="mb-3">
+        <strong>Program:</strong> {{ selected_course.program.name }}
     </div>
     {% endif %}
-
-    <h4>Programs</h4>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Degree Type</th>
-                    <th>Description</th>
-                    <th>Duration (years)</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for program in programs %}
-                <tr>
-                    <td>{{ program.name }}</td>
-                    <td>{{ program.degree_type }}</td>
-                    <td>
-                        {{ program.description }}
-                    </td>
-                    <td>{{ program.duration_years }}</td>
-                    <td>
-                        <form method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <input type="hidden" name="program_id" value="{{ program.id }}">
-                            <button type="submit" class="btn btn-primary btn-sm">Enroll</button>
-                        </form>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="5">No programs available.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    {% else %}
+    <div class="alert alert-warning">No program or course selected.</div>
+    {% endif %}
+    {% if selected_program or selected_course %}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary w-100">Confirm Enrollment</button>
+    </form>
+    {% endif %}
+    <div class="mt-3 text-center">
+        <a href="{% url 'programs_and_courses' %}">Back to Programs & Courses</a>
     </div>
-    <h4>Standalone Courses</h4>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Credits</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for course in courses %}
-                {% if not course.program %}
-                <tr>
-                    <td>{{ course.course_code }}</td>
-                    <td>{{ course.course_name }}</td>
-                    <td>{{ course.description }}</td>
-                    <td>{{ course.credits }}</td>
-                    <td>
-                        <form method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <input type="hidden" name="course_id" value="{{ course.id }}">
-                            <button type="submit" class="btn btn-primary btn-sm">Enroll</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endif %}
-                {% empty %}
-                <tr><td colspan="5">No standalone courses available.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        </div>
-    </div>
-    {% endblock %}
+</div>
+{% endblock %}

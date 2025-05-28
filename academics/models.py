@@ -39,7 +39,7 @@ class Enrollment(models.Model):
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True, blank=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
     enrollment_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
 

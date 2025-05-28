@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Enrollment Submitted{% endblock %}
+{% block content %}
+<div class="card col-md-6 mx-auto p-4 mt-4 text-center">
+    <h3 class="mb-4 text-success">Enrollment Submitted</h3>
+    <p class="mb-3">
+        Your enrollment request has been received will be reviewed shortly.
+    </p>
+    <p>Status: <strong>{{ enrollment.status }}</strong></p>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Go to Home Page</a>
+</div>
+{% endblock %}

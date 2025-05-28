@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Enrollment, Course, Program, Faculty, Student
 
 @login_required
-def enroll(request, program_id):
+def enroll(request, program_id=None, course_id=None):
     user = request.user
     try:
         student = user.student
@@ -12,28 +12,36 @@ def enroll(request, program_id):
         messages.error(request, "Only students can enroll in courses.")
         return redirect('home')
 
+    selected_program = None
+    selected_course = None
+
+    if program_id:
+        selected_program = get_object_or_404(Program, pk=program_id)
+    if course_id:
+        selected_course = get_object_or_404(Course, pk=course_id)
+
     if request.method == 'POST':
-        program_id = request.POST.get('program_id')
-        course_id = request.POST.get('course_id')
+        if selected_program:
+            enrollment = Enrollment.objects.create(student=student, program=selected_program)
+            messages.success(request, f"Enrolled in program: {selected_program.name}")
+            return redirect('enroll_success', enrollment_id=enrollment.id)
+        elif selected_course:
+            enrollment = Enrollment.objects.create(student=student, course=selected_course)
+            messages.success(request, f"Enrolled in course: {selected_course.course_name}")
+            return redirect('enroll_success', enrollment_id=enrollment.id)
+        else:
+            messages.error(request, "No program or course selected for enrollment.")
+            return redirect('programs_and_courses')
 
-        if not program_id and not course_id:
-            messages.error(request, "You must select either a program or a course to enroll in.")
-            return redirect('enroll')
+    return render(request, 'academics/enroll.html', {
+        'selected_program': selected_program,
+        'selected_course': selected_course,
+    })
 
-        if program_id:
-            program = Program.objects.get(pk=program_id)
-            Enrollment.objects.create(student=student, program=program)
-            messages.success(request, f"Enrolled in program: {program.name}")
-        elif course_id:
-            course = Course.objects.get(pk=course_id)
-            Enrollment.objects.create(student=student, course=course)
-            messages.success(request, f"Enrolled in course: {course.course_name}")
-
-        return redirect('enrollments')
-
+def programs_and_courses(request):
     programs = Program.objects.filter(is_active=True)
     courses = Course.objects.all()
-    return render(request, 'academics/enroll.html', {
+    return render(request, 'academics/programs_and_courses.html', {
         'programs': programs,
         'courses': courses,
     })
@@ -61,3 +69,7 @@ def faculty_list(request):
 def faculty_detail(request, pk):
     faculty_member = get_object_or_404(Faculty, pk=pk)
     return render(request, 'academics/faculty_detail.html', {'faculty_member': faculty_member})
+
+def enroll_success(request, enrollment_id):
+    enrollment = get_object_or_404(Enrollment, pk=enrollment_id)
+    return render(request, 'academics/enroll_success.html', {'enrollment': enrollment})

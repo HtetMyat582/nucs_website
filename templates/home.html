@@ -23,7 +23,7 @@
     <div class="mb-4">
         <a class="btn btn-outline-primary btn-lg me-2" href="#cards">Explore <i class="bi bi-search"></i></a>
         {% if user.is_authenticated %}
-        <a class="btn btn-primary btn-lg" href="{% url 'home' %}"><strong>Enroll <i class="bi bi-pencil-square"></i></strong></a>
+        <a class="btn btn-primary btn-lg" href="{% url 'programs_and_courses' %}"><strong>Enroll <i class="bi bi-pencil-square"></i></strong></a>
         {% else %}
         <a class="btn btn-primary btn-lg" href="{% url 'register' %}"><strong>Admission <i class="bi bi-pencil-square"></i></strong></a>
         {% endif %}

@@ -22,9 +22,6 @@
         {% endif %}
     </div>
     <div class="mb-3">
-        <strong>Created At:</strong> {{ program.created_at|date:"F j, Y" }}
-    </div>
-    <div class="mb-3">
         <strong>Courses:</strong>
         {% if program.courses.all %}
         <ul>
@@ -39,7 +36,7 @@
         {% endif %}
     </div>
     <div class="text-center mt-4">
-        <a href="{% url 'enroll' program.id %}" class="btn btn-primary">Enroll in this Program</a>
+        <a href="{% url 'enroll_program' program.id %}" class="btn btn-primary">Enroll in this Program</a>
     </div>
 </div>
 {% endblock %}
