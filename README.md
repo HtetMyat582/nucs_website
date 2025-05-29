@@ -5,7 +5,7 @@ NUCS_EDU is a web application built using Django. It provides various features a
 
 ## Features
 - User authentication and login
-- Programs & Coures
+- Programs & Courses
 - Student Portal
 - Faculty Portal
 - Events Calendar
