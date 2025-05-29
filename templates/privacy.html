@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy{% endblock %}
+{% block content %}
+<div class="card">
+    <h2><i class="bi bi-shield-lock-fill"></i> Privacy Policy</h2>
+    <p>
+        At the National University of Computer Studies (NUCS), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines our data handling practices and your rights as a user of our website and services.
+    </p>
+    <ul>
+        <li>
+            <i class="bi bi-ban"></i>
+            <strong>No Advertisements:</strong> We do not display or serve any advertisements on our website.
+        </li>
+        <li>
+            <i class="bi bi-person-x-fill"></i>
+            <strong>No Personalization:</strong> We do not use your data for personalized content, recommendations, or targeted experiences.
+        </li>
+        <li>
+            <i class="bi bi-shield-slash-fill"></i>
+            <strong>No Third-Party Data Collectors:</strong> We do not share your information with third-party analytics, marketing, or data collection services.
+        </li>
+        <li>
+            <i class="bi bi-people-fill"></i>
+            <strong>No Data Sharing:</strong> Your personal data is never sold, rented, or disclosed to any external parties.
+        </li>
+        <li>
+            <i class="bi bi-lock-fill"></i>
+            <strong>Data Security:</strong> We take appropriate measures to protect your information from unauthorized access, alteration, or disclosure.
+        </li>
+    </ul>
+    <p>
+        The information you provide is used solely for the purpose of delivering our academic and administrative services. If you have any questions or concerns about your privacy, please contact us at <a href="mailto:info@nucs.edu.mm">info@nucs.edu.mm</a>.
+    </p>
+    <p>
+        <small>Last updated: {{ now }}</small>
+    </p>
+</div>
+{% endblock %}

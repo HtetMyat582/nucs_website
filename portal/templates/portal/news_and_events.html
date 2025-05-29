@@ -5,7 +5,7 @@
         <div class="card">
             <h4>{{ item.title }}</h4>
             <p>{{ item.content|truncatewords:20 }}</p>
-            <small class="text-muted">{{ item.published_date }}</small>
+            <p>{{ item.published_date }}</p>
         </div>
     </div>
     {% empty %}

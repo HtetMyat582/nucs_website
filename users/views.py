@@ -6,6 +6,7 @@ from .models import User
 
 def register_view(request):
     next_url = request.GET.get('next') or request.POST.get('next') or ''
+    messages = None
     if request.method == 'POST':
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
@@ -26,6 +27,7 @@ def register_view(request):
 
 def login_view(request):
     next_url = request.GET.get('next') or request.POST.get('next') or ''
+    messages = None
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():

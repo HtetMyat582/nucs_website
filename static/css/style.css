@@ -221,8 +221,12 @@ p, li, span {
     .footer-modern .footer-links {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: flex-start;
         gap: 1rem;
+        text-align: center;
+    }
+
+    .footer-links li {
+        display: inline-block;
     }
 
     .footer-modern .footer-social {

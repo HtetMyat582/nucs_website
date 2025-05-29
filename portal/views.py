@@ -11,7 +11,17 @@ def home(request):
     now = datetime.now().year
     return render(request, 'home.html', {'news': news, 'events': events, 'now': now})
 
+def about(request):
+    now = datetime.now().year
+    return render(request, 'about.html', {'now': now})
 
+def contact(request):
+    now = datetime.now().year
+    return render(request, 'contact.html', {'now': now})
+
+def privacy(request):
+    now = datetime.now().year
+    return render(request, 'privacy.html', {'now': now})
 
 def search(request):
     query = request.GET.get('q', '')
@@ -35,6 +45,7 @@ def search(request):
         'query': query,
         'news_results': news_results,
         'event_results': event_results,
+        'program_results': program_results,
         'course_results': course_results,
         'faculty_results': faculty_results,
     }

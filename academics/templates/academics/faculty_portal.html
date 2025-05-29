@@ -53,12 +53,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-lg-3 col-12 mb-3">
             <div class="alert-message card p-3 mb-3">
                 Notifications and important updates will appear here.
             </div>
-        </div>
-        <!-- Right Sidebar -->
-        <div class="col-lg-3 col-12 mb-3">
             <div class="card p-3 mb-3">
                 <h5>Events</h5>
                 {% if events %}
@@ -68,7 +69,7 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-                    <p>No current events.</p>
+                <p>No current events.</p>
                 {% endif %}
             </div>
             <div class="card p-3">
@@ -82,7 +83,7 @@
                         initialView: 'dayGridMonth',
                         height: 180,
                         headerToolbar: false,
-                        dayHeaderFormat: { weekday: 'narrow' }, 
+                        dayHeaderFormat: { weekday: 'narrow' },
                         events: [
                             { title: 'Faculty Meeting', start: '2025-06-12' },
                             { title: 'Exam Review', start: '2025-07-20' }
