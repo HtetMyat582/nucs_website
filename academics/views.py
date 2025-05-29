@@ -22,10 +22,18 @@ def enroll(request, program_id=None, course_id=None):
 
     if request.method == 'POST':
         if selected_program:
+            already_enrolled = Enrollment.objects.filter(student=student, program=selected_program).exists()
+            if already_enrolled:
+                messages.error(request, f"You are already enrolled in program: {selected_program.name}")
+                return redirect('programs_and_courses')
             enrollment = Enrollment.objects.create(student=student, program=selected_program)
             messages.success(request, f"Enrolled in program: {selected_program.name}")
             return redirect('enroll_success', enrollment_id=enrollment.id)
         elif selected_course:
+            already_enrolled = Enrollment.objects.filter(student=student, course=selected_course).exists()
+            if already_enrolled:
+                messages.error(request, f"You are already enrolled in course: {selected_course.course_name}")
+                return redirect('programs_and_courses')
             enrollment = Enrollment.objects.create(student=student, course=selected_course)
             messages.success(request, f"Enrolled in course: {selected_course.course_name}")
             return redirect('enroll_success', enrollment_id=enrollment.id)

@@ -412,3 +412,14 @@ input[type="file"].form-input {
     background: var(--card-bg);
     color: var(--primary);
 }
+
+.alert-message {
+    background: #ffeaea;
+    color: #b30000;
+    border: 1px solid #ffb3b3;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px var(--shadow);
+}

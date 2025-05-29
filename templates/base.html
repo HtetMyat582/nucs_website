@@ -50,17 +50,17 @@
         </form>
     </div>
 
-
     <div class="hero-bg"></div>
-
+    
     <div class="main-content container mt-5">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert-message">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
         {% block content %}{% endblock %}
     </div>
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
 
     <footer class="footer-modern">
         <div class="container py-4">
