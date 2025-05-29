@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Faculty Portal{% endblock %}
+{% block content %}
+<div class="container-fluid px-0">
+    <h2 class="ps-4">Faculty Portal</h2>
+    <div class="row gx-3 px-2">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-12 mb-3">
+            <div class="card p-3">
+                <h5>My Courses</h5>
+                <ul class="list-unstyled">
+                    {% for course in courses %}
+                        <li>{{ course.course_name }}</li>
+                    {% empty %}
+                        <li class="text-muted">No assigned courses.</li>
+                    {% endfor %}
+                </ul>
+                <h5 class="mt-4">Students in My Courses</h5>
+                <ul class="list-unstyled">
+                    {% for course, enrollments in course_students.items %}
+                        <li>
+                            <strong>{{ course.course_name }}</strong>
+                            <ul>
+                                {% for enrollment in enrollments %}
+                                    <li>{{ enrollment.student.user.get_full_name|default:enrollment.student.user.username }}</li>
+                                {% empty %}
+                                    <li class="list-unstyled">No students enrolled.</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="col-lg-6 col-12 mb-3">
+            <div class="card p-4 mb-3">
+                <h4>Welcome, {{ request.user.get_full_name|default:request.user.username }}</h4>
+                <p>Faculty ID: <strong>{{ faculty.id }}</strong></p>
+                <hr>
+                <h5>Teaching Overview</h5>
+                <div>
+                    <strong>Courses:</strong> {{ courses|length }}<br>
+                    <strong>Total Students:</strong> 
+                    {{ total_students }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="card p-3 text-center">
+                        <span class="bi bi-people" style="font-size:2rem;"></span>
+                        <div>Class Management</div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert-message card p-3 mb-3">
+                Notifications and important updates will appear here.
+            </div>
+        </div>
+        <!-- Right Sidebar -->
+        <div class="col-lg-3 col-12 mb-3">
+            <div class="card p-3 mb-3">
+                <h5>Events</h5>
+                {% if events %}
+                <ul class="list-unstyled">
+                    {% for event in events %}
+                    <li>{{ event.title }} - {{ event.date }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No current events.</p>
+                {% endif %}
+            </div>
+            <div class="card p-3">
+                <h5>Calendar</h5>
+                <div id="calendar"></div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        height: 180,
+                        headerToolbar: false,
+                        dayHeaderFormat: { weekday: 'narrow' }, 
+                        events: [
+                            { title: 'Faculty Meeting', start: '2025-06-12' },
+                            { title: 'Exam Review', start: '2025-07-20' }
+                        ]
+                    });
+                    calendar.render();
+                });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}

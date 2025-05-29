@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Enrollment, Course, Program, Faculty, Student
+from portal.models import Event
 
 @login_required
 def enroll(request, program_id=None, course_id=None):
@@ -81,3 +82,50 @@ def faculty_detail(request, pk):
 def enroll_success(request, enrollment_id):
     enrollment = get_object_or_404(Enrollment, pk=enrollment_id)
     return render(request, 'academics/enroll_success.html', {'enrollment': enrollment})
+
+@login_required
+def student_portal(request):
+    try:
+        student = request.user.student
+    except Student.DoesNotExist:
+        messages.error(request, "Only students can access the student portal.")
+        return redirect('home')
+
+    enrollments = Enrollment.objects.filter(student=student, status='Accepted')
+    programs = [enrollment.program for enrollment in enrollments if enrollment.program]
+    courses = [enrollment.course for enrollment in enrollments if enrollment.course]
+    events =  Event.objects.all().order_by('-date')
+    context = {
+        'programs': programs,
+        'courses': courses,
+        'student_id': request.user.username,
+        'events' : events,
+    }
+    return render(request, 'academics/student_portal.html', context)
+
+@login_required
+def faculty_portal(request):
+    try:
+        faculty = request.user.faculty
+    except Faculty.DoesNotExist:
+        messages.error(request, "Only faculty members can access the faculty portal.")
+        return redirect('home')
+
+    
+    courses = Course.objects.filter(faculty=faculty)
+    
+    course_students = {
+        course: Enrollment.objects.filter(course=course, status='Accepted').select_related('student__user')
+        for course in courses
+    }
+    total_students = sum(enrollments.count() for enrollments in course_students.values())
+    events = Event.objects.all().order_by('-date')
+    context = {
+        'faculty': faculty,
+        'courses': courses,
+        'course_students': course_students,
+        'events': events,
+        'total_students': total_students,
+    }
+    return render(request, 'academics/faculty_portal.html', context)
+

@@ -14,9 +14,15 @@ def register_view(request):
             user.save()
             login(request, user)
             return redirect(next_url or 'home')
+        else:
+            messages = form.non_field_errors()
     else:
         form = RegisterForm()
-    return render(request, 'users/register.html', {'form': form, 'next': next_url})
+    return render(request, 'users/register.html', {
+        'form': form,
+        'next': next_url,
+        'messages': messages,
+        })
 
 def login_view(request):
     next_url = request.GET.get('next') or request.POST.get('next') or ''
@@ -31,14 +37,22 @@ def login_view(request):
             if user:
                 login(request, user)
                 return redirect(next_url or 'home')
+            else:
+                messages = "Invalid username or password."
+        else:
+            messages = form.non_field_errors()
     else:
         form = LoginForm()
 
-    return render(request, 'users/login.html', {'form': form, 'next': next_url})
+    return render(request, 'users/login.html', {
+        'form': form,
+        'next': next_url,
+        'messages': messages,
+        })
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 @login_required
 def profile_view(request):

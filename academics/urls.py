@@ -12,4 +12,6 @@ urlpatterns = [
     path('courses/<int:pk>/', views.course_detail, name='course_detail'),
     path('faculty/', views.faculty_list, name='faculty_list'),
     path('faculty/<int:pk>/', views.faculty_detail, name='faculty_detail'),
+    path('student-portal/', views.student_portal, name='student_portal'),
+    path('faculty/portal/', views.faculty_portal, name='faculty_portal'),
 ]

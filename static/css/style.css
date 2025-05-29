@@ -66,7 +66,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     color: var(--title) !important;
 }
 
@@ -422,4 +422,87 @@ input[type="file"].form-input {
     margin-bottom: 1rem;
     font-weight: 500;
     box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* Calendar container */
+#calendar {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px var(--shadow);
+    padding: 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1rem;
+}
+
+/* Calendar header */
+.fc-toolbar-title {
+    color: var(--primary-dark);
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.fc-toolbar-chunk button {
+    background: var(--primary-dark) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin: 0 2px;
+    padding: 4px 12px;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.fc-toolbar-chunk button:hover {
+    background: var(--primary) !important;
+}
+
+/* Day grid */
+.fc-daygrid-day {
+    background: transparent;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.fc-daygrid-day:hover {
+    background: var(--bg);
+}
+.fc-daygrid-day-number {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+.fc-day-today {
+    color: var(--primary-dark) !important;
+    font-weight: 700 !important;
+    border-radius: 6px;
+}
+
+/* Weekdays */
+.fc-col-header-cell-cushion {
+    color: var(--primary-dark);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+/* Events */
+.fc-event {
+    background: var(--primary-dark) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 0.95rem;
+    padding: 2px 6px;
+}
+
+/* Scrollbar for overflow */
+#calendar .fc-scroller {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-dark) var(--bg);
+}
+#calendar .fc-scroller::-webkit-scrollbar {
+    width: 8px;
+    background: var(--bg);
+    border-radius: 8px;
+}
+#calendar .fc-scroller::-webkit-scrollbar-thumb {
+    background: var(--primary-dark);
+    border-radius: 8px;
 }

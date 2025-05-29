@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Student Portal{% endblock %}
+{% block content %}
+<div class="container-fluid px-0">
+    <h2 class="ps-4">Student Portal</h2>
+    <div class="row gx-3 px-2">
+        <!-- Sidebar -->
+        <div class="col-lg-3 col-12 mb-3">
+            <div class="card p-3">
+                <h5>My Programs</h5>
+                <ul class="list-unstyled">
+                    {% for program in programs %}
+                    <li>{{ program.name }}</li>
+                    {% empty %}
+                    <li class="text-muted">No enrolled programs.</li>
+                    {% endfor %}
+                </ul>
+                <h5 class="mt-4">Standalone Courses</h5>
+                <ul class="list-unstyled">
+                    {% for course in courses %}
+                    <li>{{ course.course_name }}</li>
+                    {% empty %}
+                    <li class="text-muted">No enrolled courses.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="col-lg-6 col-12 mb-3">
+            <div class="card p-4 mb-3">
+                <h4>Welcome, {{ request.user.get_full_name|default:request.user.username }}</h4>
+                <p>Student ID: <strong>{{ student_id }}</strong></p>
+                <hr>
+                <h5>Enrollment Overview</h5>
+                <div>
+                    <strong>Programs:</strong> {{ programs|length }}<br>
+                    <strong>Courses:</strong> {{ courses|length }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <div class="card p-3 text-center">
+                        <span class="bi bi-bar-chart" style="font-size:2rem;"></span>
+                        <div>Progress Chart</div>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="card p-3 text-center">
+                        <span class="bi bi-pie-chart" style="font-size:2rem;"></span>
+                        <div>Credits Pie</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Sidebar -->
+        
+        <div class="col-lg-3 col-12 mb-3">
+            <div class="alert-message card p-3 mb-3">
+                Notifications and important updates will appear here.
+            </div>
+            <div class="card p-3 mb-3">
+                <h5>Events</h5>
+                {% if events %}
+                <ul class="list-unstyled">
+                    {% for event in events %}
+                    <li>{{ event.title }} - {{ event.date }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>No current events.</p>
+                {% endif %}
+            </div>
+        
+            <div class="card p-3">
+                <h5>Calendar</h5>
+                <div id="calendar"></div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        height: 180,
+                        headerToolbar: false,
+                        dayHeaderFormat: { weekday: 'narrow' }, 
+                        events: [
+                            { title: 'Orientation', start: '2025-06-10' },
+                            { title: 'Midterm Exams', start: '2025-07-15' }
+                        ]
+                    });
+                    calendar.render();
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
