@@ -3,6 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Enrollment, Course, Program, Faculty, Student
 from portal.models import Event
+from django.contrib.auth.decorators import user_passes_test
+from django.views.decorators.http import require_POST
+from .forms import CourseForm
+from portal.forms import EventForm
 
 @login_required
 def enroll(request, program_id=None, course_id=None):
@@ -111,21 +115,114 @@ def faculty_portal(request):
         messages.error(request, "Only faculty members can access the faculty portal.")
         return redirect('home')
 
-    
     courses = Course.objects.filter(faculty=faculty)
-    
     course_students = {
         course: Enrollment.objects.filter(course=course, status='Accepted').select_related('student__user')
         for course in courses
     }
     total_students = sum(enrollments.count() for enrollments in course_students.values())
     events = Event.objects.all().order_by('-date')
+
+    # Add forms for modals
+    from .forms import CourseForm, ProgramForm
+    from portal.forms import EventForm
+
+    course_form = CourseForm()
+    program_form = ProgramForm()
+    event_form = EventForm()
+
+    # For edit modals, attach a form to each object
+    for course in courses:
+        course.edit_form = CourseForm(instance=course)
+    for event in events:
+        event.edit_form = EventForm(instance=event)
+
     context = {
         'faculty': faculty,
         'courses': courses,
         'course_students': course_students,
         'events': events,
         'total_students': total_students,
+        'course_form': course_form,
+        'program_form': program_form,
+        'event_form': event_form,
     }
     return render(request, 'academics/faculty_portal.html', context)
 
+
+def is_faculty(user):
+    return hasattr(user, 'faculty')
+
+@login_required
+@user_passes_test(is_faculty)
+def faculty_add_course(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.faculty = request.user.faculty
+            course.save()
+            messages.success(request, "Course created successfully.")
+            return redirect('faculty_portal')
+    else:
+        form = CourseForm()
+    return render(request, 'academics/faculty_portal.html', {'form': form})
+
+@login_required
+@user_passes_test(is_faculty)
+def faculty_edit_course(request, pk):
+    course = get_object_or_404(Course, pk=pk, faculty=request.user.faculty)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Course updated successfully.")
+            return redirect('faculty_portal')
+    else:
+        form = CourseForm(instance=course)
+    return render(request, 'academics/faculty_portal.html', {'form': form})
+
+@login_required
+@user_passes_test(is_faculty)
+@require_POST
+def faculty_delete_course(request, pk):
+    course = get_object_or_404(Course, pk=pk, faculty=request.user.faculty)
+    course.delete()
+    messages.success(request, "Course deleted successfully.")
+    return redirect('faculty_portal')
+
+@login_required
+@user_passes_test(is_faculty)
+def faculty_add_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Event created successfully.")
+            return redirect('faculty_portal')
+    else:
+        form = EventForm()
+    return render(request, 'academics/faculty_portal.html', {'form': form})
+
+@login_required
+@user_passes_test(is_faculty)
+def faculty_edit_event(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Event updated successfully.")
+            return redirect('faculty_portal')
+    else:
+        form = EventForm(instance=event)
+    return render(request, 'academics/faculty_portal.html', {'form': form})
+
+@login_required
+@user_passes_test(is_faculty)
+@require_POST
+def faculty_delete_event(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    event.delete()
+    messages.success(request, "Event deleted successfully.")
+    return redirect('faculty_portal')

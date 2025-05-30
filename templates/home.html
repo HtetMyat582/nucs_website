@@ -23,7 +23,15 @@
     <div class="mb-4">
         <a class="btn btn-outline-primary btn-lg me-2" href="#cards">Explore <i class="bi bi-search"></i></a>
         {% if user.is_authenticated %}
+        {% if has_accepted_enrollment %}
+        <a class="btn btn-primary btn-lg" href="{% url 'student_portal' %}"><strong>Student Portal <i class="bi bi-mortarboard-fill"></i></strong></a>
+        {% endif %}
+        {% if is_faculty %}
+        <a class="btn btn-primary btn-lg" href="{% url 'faculty_portal' %}"><strong>Faculty Portal <i class="bi bi-clipboard2-data-fill"></i></strong></a>
+        {% endif %}
+        {% if not has_accepted_enrollment and not is_faculty %}
         <a class="btn btn-primary btn-lg" href="{% url 'programs_and_courses' %}"><strong>Enroll <i class="bi bi-pencil-square"></i></strong></a>
+        {% endif %}
         {% else %}
         <a class="btn btn-primary btn-lg" href="{% url 'register' %}"><strong>Admission <i class="bi bi-pencil-square"></i></strong></a>
         {% endif %}

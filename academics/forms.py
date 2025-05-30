@@ -1,5 +1,5 @@
 from django import forms
-from .models import Enrollment
+from .models import Enrollment, Course, Program
 
 class EnrollmentForm(forms.ModelForm):
     class Meta:
@@ -20,3 +20,13 @@ class EnrollmentForm(forms.ModelForm):
         if not program and not course:
             raise forms.ValidationError("You must select either a program or a course to enroll in.")
         return cleaned_data
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['course_code', 'course_name', 'description', 'credits', 'program']
+
+class ProgramForm(forms.ModelForm):
+    class Meta:
+        model = Program
+        fields = ['name', 'description', 'duration_years']

@@ -7,6 +7,7 @@
     --primary: #008080;
     --primary-dark: #0077aa;
     --shadow: rgba(0, 170, 255, 0.1);
+    --modal-bg: #ffffff;
 }
 
 /* Dark Theme */
@@ -18,6 +19,7 @@
     --primary: rgba(0, 170, 255, 0.2);
     --primary-dark: #008080;
     --shadow: rgba(0, 170, 255, 0.2);
+    --modal-bg: #121212;
 }
 
 html, body {
@@ -288,7 +290,6 @@ form {
 
 textarea.form-input {
     resize: vertical;
-    min-height: 80px;
 }
 
 input[type="file"].form-input {
@@ -418,9 +419,9 @@ input[type="file"].form-input {
 }
 
 .alert-message {
-    background: #ffeaea;
-    color: #b30000;
-    border: 1px solid #ffb3b3;
+    background: #c7fbf6;
+    color: #08157a;
+    border: 1px solid #87ff64;
     border-radius: 8px;
     padding: 1rem 1.5rem;
     margin-bottom: 1rem;
@@ -509,4 +510,84 @@ input[type="file"].form-input {
 #calendar .fc-scroller::-webkit-scrollbar-thumb {
     background: var(--primary-dark);
     border-radius: 8px;
+}
+
+/* Modal background and content */
+.modal-content {
+    background: var(--modal-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px var(--shadow);
+    color: var(--text);
+    border: none;
+}
+
+.modal-header, .modal-footer {
+    border: none;
+    background: transparent;
+}
+
+.modal-title {
+    color: var(--title) !important;
+    font-weight: 600;
+}
+
+.modal-body label {
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="number"],
+.modal-body input[type="date"],
+.modal-body input[type="email"],
+.modal-body input[type="password"],
+.modal-body textarea,
+.modal-body select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--primary);
+    background: transparent;
+    padding: 8px 4px;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    border-radius: 0;
+    transition: border-color 0.3s;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus,
+.modal-body select:focus {
+    border-bottom: 2px solid var(--primary-dark);
+    outline: none;
+    background: transparent;
+}
+
+.modal-footer .btn {
+    border-radius: 10px;
+    min-width: 100px;
+}
+
+.modal-footer .btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+.modal-footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.modal-body textarea {
+    min-height: 48px !important;
+    resize: vertical;
 }
