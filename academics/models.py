@@ -28,7 +28,7 @@ class Course(models.Model):
     faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.course_code
+        return self.course_name
 
 class Enrollment(models.Model):
     STATUS_CHOICES = [

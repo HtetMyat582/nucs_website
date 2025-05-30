@@ -40,3 +40,11 @@ def create_or_update_student(sender, instance, created, **kwargs):
     else:
         # delete Student record if role is changed away from Student
         Student.objects.filter(user=instance).delete()
+
+@receiver(post_save, sender=User)
+def create_or_update_faculty(sender, instance, created, **kwargs):
+    if instance.role == 'Faculty':
+        Faculty.objects.get_or_create(user=instance)
+    else:
+        # delete Faculty record if role is changed away from Faculty
+        Faculty.objects.filter(user=instance).delete()

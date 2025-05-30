@@ -23,6 +23,7 @@ Flask==3.0.3
 fonttools==4.55.6
 idna==3.10
 imageio==2.37.0
+iniconfig==2.1.0
 ipykernel==6.29.5
 ipython==8.31.0
 itsdangerous==2.2.0
@@ -44,8 +45,8 @@ packaging==24.2
 pandas==2.2.3
 parso==0.8.4
 pillow==10.4.0
-pip==25.1.1
 platformdirs==4.3.6
+pluggy==1.6.0
 progressbar2==4.5.0
 prompt_toolkit==3.0.50
 psutil==6.1.1
@@ -59,6 +60,7 @@ pyparsing==3.2.1
 pyperclip==1.9.0
 PyRect==0.2.0
 PyScreeze==1.0.1
+pytest==8.3.5
 python-dateutil==2.9.0.post0
 python-utils==3.9.1
 pytweening==1.2.0
@@ -69,7 +71,6 @@ pyzmq==26.2.0
 requests==2.32.3
 scikit-learn==1.6.1
 scipy==1.15.1
-setuptools==65.5.0
 six==1.17.0
 soupsieve==2.6
 sqlparse==0.5.0
@@ -84,5 +85,4 @@ Unidecode==1.4.0
 urllib3==2.2.3
 wcwidth==0.2.13
 Werkzeug==3.0.6
-wheel==0.43.0
 wikipedia==1.4.0
