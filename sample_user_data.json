@@ -1,0 +1,343 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$4QWbmPSnvzhjvyLrNunoDP$rqI+33GoOZ4plat0UIyc/fFrldnnne0iO3PjG0Eg+30=",
+    "last_login": "2025-05-31T00:58:50.728",
+    "is_superuser": true,
+    "username": "Admin",
+    "first_name": "George",
+    "last_name": "Gray",
+    "email": "admin@nucs.edu.mm",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-26T23:10:24.629",
+    "role": "SysAdmin",
+    "country": "MM",
+    "city": "Yangon",
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$IIGu33BCFGcx8DlbkJut1A$PAUF+937AY0zd7wrQvBW+12YKuuyOGt98HBLwFwV7ZA=",
+    "last_login": "2025-05-31T00:22:07.838",
+    "is_superuser": false,
+    "username": "test_student_0",
+    "first_name": "Jack",
+    "last_name": "Black",
+    "email": "nucs_student@nucs.edu.mm",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-26T23:30:37.304",
+    "role": "Student",
+    "country": "US",
+    "city": "Calfornia",
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "password123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jason_andor_93",
+    "first_name": "Jason",
+    "last_name": "Andor",
+    "email": "faculty1@nucs.edu.mm",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-27T10:10:32",
+    "role": "Faculty",
+    "country": null,
+    "city": null,
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "password123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "carla_martinez_2",
+    "first_name": "Carla",
+    "last_name": "Martinez",
+    "email": "faculty2@nucs.edu.mm",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-27T10:30:12",
+    "role": "Faculty",
+    "country": null,
+    "city": null,
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$ofFhhLBXifX5vN3gVJfKDN$49lUg2Je2NLOxMyyxcDIbXZvp5lOr7QXjZyy4CJjukg=",
+    "last_login": "2025-05-31T08:57:06.683",
+    "is_superuser": false,
+    "username": "neo_one_99",
+    "first_name": "Neo",
+    "last_name": "Anderson",
+    "email": "faculty3@nucs.edu.mm",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-27T10:32:32",
+    "role": "Faculty",
+    "country": "US",
+    "city": "Los Angeles",
+    "profile_picture": "profiles/Neo.The-Matrix.webp",
+    "groups": [],
+    "user_permissions": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$VGgrd1tDTc0ausHgxE6exf$DemiXYKFKVgOQ8xDf5Yo+4W2OqFkOzhoIBAEmnyGzH4=",
+    "last_login": "2025-05-27T14:41:34.330",
+    "is_superuser": false,
+    "username": "Kathrine",
+    "first_name": "",
+    "last_name": "",
+    "email": "suy569178@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-27T14:40:36.684",
+    "role": "Student",
+    "country": "MM",
+    "city": "Mandalay",
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$6IW3GXZeDCGyAA5j8mb2n6$/KHm8THXhJlkffL+6aTFm5zcIbx2AqHhtNhIg/LUT38=",
+    "last_login": "2025-05-27T21:45:23.841",
+    "is_superuser": false,
+    "username": "test_user_1",
+    "first_name": "",
+    "last_name": "",
+    "email": "user1@nucs.edu.mm",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-27T21:45:23.269",
+    "role": "Student",
+    "country": "BS",
+    "city": null,
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$rUyC53UElBTpH0jXYbLKOd$4D8LUZFhTZU1LtgsOKLumTzMjCRe49RcWmyL2ub5Kuo=",
+    "last_login": "2025-05-28T23:04:44.354",
+    "is_superuser": false,
+    "username": "testing",
+    "first_name": "",
+    "last_name": "",
+    "email": "azhar.azhar77758@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-28T22:48:05.166",
+    "role": "Student",
+    "country": "MM",
+    "city": "Mandalay",
+    "profile_picture": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$Bspa4qWsKRZNkMZfxMdLXd$5DbQ+bUVNWlqflGEaUks1q7FR3/yVkNPO9lzBucktyQ=",
+    "last_login": "2025-05-31T00:30:14.790",
+    "is_superuser": false,
+    "username": "test_user_2",
+    "first_name": "",
+    "last_name": "",
+    "email": "testuser2@domain.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-30T13:43:59.525",
+    "role": "Student",
+    "country": "DZ",
+    "city": null,
+    "profile_picture": "profiles/HMM1.png",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.student",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "enrollment_number": null,
+    "program": null,
+    "year_of_study": null
+  }
+},
+{
+  "model": "users.student",
+  "pk": 10,
+  "fields": {
+    "user": 10,
+    "enrollment_number": null,
+    "program": null,
+    "year_of_study": null
+  }
+},
+{
+  "model": "users.student",
+  "pk": 11,
+  "fields": {
+    "user": 11,
+    "enrollment_number": null,
+    "program": null,
+    "year_of_study": null
+  }
+},
+{
+  "model": "users.student",
+  "pk": 12,
+  "fields": {
+    "user": 12,
+    "enrollment_number": null,
+    "program": null,
+    "year_of_study": null
+  }
+},
+{
+  "model": "users.student",
+  "pk": 13,
+  "fields": {
+    "user": 13,
+    "enrollment_number": null,
+    "program": null,
+    "year_of_study": null
+  }
+},
+{
+  "model": "users.faculty",
+  "pk": 1,
+  "fields": {
+    "user": 7,
+    "department": "English",
+    "designation": "Professor",
+    "contact_info": "faculty1@nucs.edu.mm"
+  }
+},
+{
+  "model": "users.faculty",
+  "pk": 2,
+  "fields": {
+    "user": 8,
+    "department": "Computer Science",
+    "designation": "Department Head",
+    "contact_info": "faculty2@nucs.edu.mm"
+  }
+},
+{
+  "model": "users.faculty",
+  "pk": 3,
+  "fields": {
+    "user": 9,
+    "department": "Information Technology",
+    "designation": "Department Head",
+    "contact_info": "faculty3@nucs.edu.mm"
+  }
+}
+]

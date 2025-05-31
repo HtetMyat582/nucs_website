@@ -1,0 +1,22 @@
+[
+{
+  "model": "portal.event",
+  "pk": 1,
+  "fields": {
+    "title": "Exams This Week!",
+    "description": "The Final Exams for the 4th Year Resume classes will be held starting the first week of June.",
+    "date": "2025-06-01",
+    "time": "00:00:00",
+    "location": "LMS @ NUCS"
+  }
+},
+{
+  "model": "portal.news",
+  "pk": 1,
+  "fields": {
+    "title": "New Website In Development",
+    "content": "Lorem ipsum blah blah...",
+    "published_date": "2025-05-28T20:48:19.120"
+  }
+}
+]

@@ -1,0 +1,142 @@
+[
+{
+  "model": "academics.program",
+  "pk": 1,
+  "fields": {
+    "name": "Bachelor of Computer Science",
+    "degree_type": "Bachelors",
+    "description": "A four-year undergraduate program focused on core computer science concepts and practical skills.",
+    "duration_years": 4,
+    "is_active": true,
+    "created_at": "2025-05-26T00:00:00"
+  }
+},
+{
+  "model": "academics.program",
+  "pk": 2,
+  "fields": {
+    "name": "Bachelor of Information Technology",
+    "degree_type": "Bachelors",
+    "description": "A program emphasizing IT infrastructure, networking, and systems administration.",
+    "duration_years": 4,
+    "is_active": true,
+    "created_at": "2025-05-26T00:00:00"
+  }
+},
+{
+  "model": "academics.program",
+  "pk": 3,
+  "fields": {
+    "name": "Master of Data Science",
+    "degree_type": "Masters",
+    "description": "A postgraduate program covering data analysis, machine learning, and big data technologies.",
+    "duration_years": 2,
+    "is_active": true,
+    "created_at": "2025-05-26T00:00:00"
+  }
+},
+{
+  "model": "academics.course",
+  "pk": 2,
+  "fields": {
+    "program": 1,
+    "course_code": "CS201",
+    "course_name": "Data Structures",
+    "description": "Study of data organization and algorithms.",
+    "credits": 3,
+    "faculty": 2
+  }
+},
+{
+  "model": "academics.course",
+  "pk": 4,
+  "fields": {
+    "program": 3,
+    "course_code": "DS501",
+    "course_name": "Machine Learning",
+    "description": "Core concepts and algorithms in machine learning.",
+    "credits": 4,
+    "faculty": 3
+  }
+},
+{
+  "model": "academics.course",
+  "pk": 5,
+  "fields": {
+    "program": null,
+    "course_code": "GEN100",
+    "course_name": "Academic Writing",
+    "description": "General academic writing skills for all students.",
+    "credits": 2,
+    "faculty": 1
+  }
+},
+{
+  "model": "academics.course",
+  "pk": 6,
+  "fields": {
+    "program": 1,
+    "course_code": "CS201",
+    "course_name": "Web Application Development",
+    "description": "Principles in Web App Development and practical usages, development, testing and deployment.",
+    "credits": 3,
+    "faculty": 3
+  }
+},
+{
+  "model": "academics.course",
+  "pk": 7,
+  "fields": {
+    "program": null,
+    "course_code": "MATH 101",
+    "course_name": "Computational Mathematics",
+    "description": "Learn the basics of Mathematics approached from the perspective of computers, how Math is important Computer Science and wait!? is it all Math? Yes. Always!",
+    "credits": 2,
+    "faculty": 2
+  }
+},
+{
+  "model": "academics.enrollment",
+  "pk": 1,
+  "fields": {
+    "student": 1,
+    "program": null,
+    "course": 5,
+    "enrollment_date": "2025-05-27T14:33:37.456",
+    "status": "Accepted"
+  }
+},
+{
+  "model": "academics.enrollment",
+  "pk": 8,
+  "fields": {
+    "student": 1,
+    "program": 1,
+    "course": null,
+    "enrollment_date": "2025-05-29T11:50:05.541",
+    "status": "Accepted"
+  }
+},
+{
+  "model": "academics.enrollment",
+  "pk": 9,
+  "fields": {
+    "student": 11,
+    "program": 2,
+    "course": 4,
+    "enrollment_date": "2025-05-29T20:29:10.527",
+    "status": "Accepted"
+  }
+},
+{
+  "model": "academics.enrollment",
+  "pk": 10,
+  "fields": {
+    "student": 13,
+    "program": null,
+    "course": 7,
+    "enrollment_date": "2025-05-31T00:41:19.740",
+    "status": "Pending"
+  }
+}
+]
